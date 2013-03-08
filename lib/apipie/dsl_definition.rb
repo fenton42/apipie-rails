@@ -20,17 +20,18 @@ module Apipie
 
       def _apipie_dsl_data_init
         @_apipie_dsl_data =  {
-         :api_args          => [],
-         :errors            => [],
-         :params            => [],
-         :resouce_id        => nil,
-         :short_description => nil,
-         :description       => nil,
-         :examples          => [],
-         :see               => [],
-         :formats           => nil,
-         :api_versions      => []
-       }
+          :api_args          => [],
+          :errors            => [],
+          :params            => [],
+          :resouce_id        => nil,
+          :short_description => nil,
+          :description       => nil,
+          :examples          => [],
+          :returns           => [],
+          :see               => [],
+          :formats           => nil,
+          :api_versions      => []
+        }
       end
     end
 
@@ -97,6 +98,15 @@ module Apipie
         return unless Apipie.active_dsl?
         _apipie_dsl_data[:examples] << example.strip_heredoc
       end
+
+      #TODO Should be "param" like
+      # Show return values (first shot: Only text)
+      # method return.
+      def returns(returns) #:doc:
+        return unless Apipie.active_dsl?
+        _apipie_dsl_data[:returns] << returns.strip_heredoc
+      end
+
 
       # Describe whole resource
       #
@@ -229,10 +239,10 @@ module Apipie
       def param(param_name, validator, desc_or_options = nil, options = {}, &block) #:doc:
         return unless Apipie.active_dsl?
         _apipie_dsl_data[:params] << [param_name,
-                                      validator,
-                                      desc_or_options,
-                                      options.merge(:param_group => @_current_param_group),
-                                      block]
+          validator,
+          desc_or_options,
+          options.merge(:param_group => @_current_param_group),
+        block]
       end
 
       # Reuses param group for this method. The definition is looked up
