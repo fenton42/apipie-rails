@@ -36,7 +36,7 @@
     <% end %>
   <% end %>
 
-<% unless @method[:returns].blank? %>
+  <% unless @method[:returns].blank? %>
     <h2>Returns</h2>
     <% @method[:returns].each do |ret| %>
       <pre class="prettyprint"><%= ret %></pre>

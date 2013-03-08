@@ -74,6 +74,12 @@
           <pre class="prettyprint"><%= example %></pre>
         <% end %>
       <% end %>
+      <% unless m[:returns].blank? %>
+        <h3>Returns</h3>
+        <% m[:returns].each do |returns| %>
+          <pre class="prettyprint"><%= returns %></pre>
+        <% end %>
+      <% end %>
 
       <% unless m[:params].blank? %>
         <h3>Params</h3>

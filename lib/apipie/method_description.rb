@@ -15,7 +15,7 @@ module Apipie
 
     end
 
-    attr_reader :full_description, :method, :resource, :apis, :examples, :see, :formats
+    attr_reader :full_description, :method, :resource, :apis, :examples, :see, :formats, :returns
 
     def initialize(method, resource, dsl_data)
       @method = method.to_s
@@ -36,6 +36,7 @@ module Apipie
         Apipie::SeeDescription.new(args)
       end
 
+      @returns = dsl_data[:returns]
       @formats = dsl_data[:formats]
       @examples = dsl_data[:examples]
       @examples += load_recorded_examples
@@ -133,6 +134,7 @@ module Apipie
         :errors => errors.map(&:to_json),
         :params => params_ordered.map(&:to_json).flatten,
         :examples => @examples,
+        :returns => @returns,
         :see => see.map(&:to_json)
       }
     end
