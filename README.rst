@@ -202,6 +202,10 @@ example
   Provide example of server response, whole communication or response type.
   It will be formatted as code.
 
+returns
+  Describe the return of API call.
+  It will be formatted as code.
+
 see
   Provide reference to another method, this has to be string with
   controller_name#method_name.
@@ -224,6 +228,7 @@ Example:
    description "method description"
    formats ['json', 'jsonp', 'xml']
    example " 'user': {...} "
+   returns " <xml ... "
    see "users#showme", "link description"
    see :link => "users#update", :desc => "another link description"
    def show
